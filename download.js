@@ -1,8 +1,7 @@
 var http = require("http");
 var fs = require("fs");
-var app = require("./app.js");
 
-function download(url, callback) {
+exports.download = function(url, callback) {
   http.get(url, function(res) {
     var data = "";
     res.on("data", function(chunk) {
@@ -16,7 +15,7 @@ function download(url, callback) {
   });
 }
 
-function writeToFile(data, file) {
+exports.writeToFile = function(data, file) {
   if (data) {
     fs.writeFile(file, data, function(err) {
       if(err) {
@@ -28,15 +27,3 @@ function writeToFile(data, file) {
   }
   else console.log("error");
 }
-
-var gnc = "http://www.gnc.com/home/index.jsp";
-var tnation = "http://www.t-nation.com/store/";
-
-download(gnc, function(data) {
-    writeToFile(data, "./public/gnc.html");
-});
-download(tnation, function(data) {
-    writeToFile(data, "./public/tnation.html");
-});
-
-app.start();

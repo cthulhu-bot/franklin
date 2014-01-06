@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
+var downloader = require("./download");
 
-exports.start = function() {
 app.get("/hello.txt", function(req, res) {
   var body = "Hello World";
   res.setHeader("Content-Type", "text/plain");
@@ -27,7 +27,15 @@ app.get("/tnation", function(req, res){
   res.sendfile("./public/tnation.html");
 });
 
+var gnc = "http://www.gnc.com/home/index.jsp";
+var tnation = "http://www.t-nation.com/store/";
+
+downloader.download(gnc, function(data) {
+    downloader.writeToFile(data, "./public/gnc.html");
+});
+downloader.download(tnation, function(data) {
+    downloader.writeToFile(data, "./public/tnation.html");
+});
+
 app.listen(3000);
 console.log("Listening on port 3000");
-
-}
