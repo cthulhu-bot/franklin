@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var downloader = require("./download");
+var crawler = require("./crawler/gnc");
 
 app.get("/hello.txt", function(req, res) {
   var body = "Hello World";
