@@ -1,0 +1,10 @@
+var http = require("http");
+var cheerio = require("cheerio");
+var request = require("request");
+
+var gncTest = "http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-Wheybolic-Extreme-60-Chocolate/product.jsp?productId=3509954";
+
+
+
+exports.downloadImage = function(url) {
+}

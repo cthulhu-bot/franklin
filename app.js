@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-var downloader = require("./download");
+var downloader = require("./scraper/download");
 var crawler = require("./crawler/gnc");
 
 app.get("/hello.txt", function(req, res) {
@@ -30,6 +30,7 @@ app.get("/tnation", function(req, res){
 
 var gnc = "http://www.gnc.com/home/index.jsp";
 var tnation = "http://www.t-nation.com/store/";
+var gncTest = "http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-Wheybolic-Extreme-60-Chocolate/product.jsp?productId=3509954";
 
 downloader.download(gnc, function(data) {
     downloader.writeToFile(data, "./public/gnc.html");
