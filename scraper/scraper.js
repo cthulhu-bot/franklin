@@ -6,11 +6,16 @@ var url = "http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-Wheybolic-Extrem
 
 request(url, function(err, resp, body){
     $ = cheerio.load(body);
-    links = $('a');
-    $(links).each(function(i,link) {
-        console.log($(link).text() + ':\n ' + $(link).attr('href'));
+//    product = $('a').text();
+    var productImageLink = $('#mainProductImage').attr('src');
+    console.log('Image Link\n' + productImageLink);
+    var priceNow = $('.priceNow');
+    var promoPrice = $('.promo goldCard member-price');
+    nutritionInfo = $('.prodTabContentBlockInside');
+    // Nutrition info is constructed in an html table
+    // Figure out how to deal with this
+    $(nutritionInfo).each(function(entry) {
+        console.log(entry.text());
     });
 });
 
-exports.downloadImage = function(url) {
-}

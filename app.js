@@ -1,7 +1,8 @@
-var express = require("express");
+var express = require('express');
 var app = express();
-var downloader = require("./scraper/download");
-var crawler = require("./crawler/gnc");
+var downloader = require('./scraper/download');
+var scraper = require('./scraper/scraper');
+var crawler = require('./crawler/gnc');
 
 app.get("/hello.txt", function(req, res) {
   var body = "Hello World";
@@ -22,6 +23,13 @@ app.get("/test", function(req, res){
 
 app.get("/gnc", function(req, res){
   res.sendfile("./public/gnc.html");
+});
+
+app.get('/gnc/products', function(req, res){
+  var body = crawler.hello();
+  res.setHeader("Content-Type", "text/plain");
+  res.setHeader("Content-Length", body.length);
+  res.end(body);
 });
 
 app.get("/tnation", function(req, res){
