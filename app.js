@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 var downloader = require('./scraper/download');
 var scraper = require('./scraper/scraper');
-var crawler = require('./crawler/gnc');
+var gnc = require('./crawler/gnc');
 
 app.get("/hello.txt", function(req, res) {
-  var body = "Hello World";
+  var body = "Fitnesse Finder Home Page";
   res.setHeader("Content-Type", "text/plain");
   res.setHeader("Content-Length", body.length);
   res.end(body);
@@ -26,14 +26,15 @@ app.get("/gnc", function(req, res){
 });
 
 app.get('/gnc/products', function(req, res){
-  var body = crawler.hello();
-  res.setHeader("Content-Type", "text/plain");
-  res.setHeader("Content-Length", body.length);
-  res.end(body);
+    res.sendfile('./public/gncProducts.html');
 });
 
-app.get("/tnation", function(req, res){
+app.get('/tnation', function(req, res){
   res.sendfile("./public/tnation.html");
+});
+
+app.get('/gnc/testProduct', function(req, res){
+  res.sendfile('./public/testProduct.html');
 });
 
 var gnc = "http://www.gnc.com/home/index.jsp";
