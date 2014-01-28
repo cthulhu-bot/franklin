@@ -4,7 +4,8 @@ var request = require("request");
 var downloader = require('../download');
 
 var gnc = "http://www.gnc.com/home/index.jsp";
-var url = "http://www.gnc.com/Sports-Nutrition-Protein-Whey-Protein/family.jsp?categoryId=2108294&cp=3593187";
+// var url = "http://www.gnc.com/Sports-Nutrition-Protein-Whey-Protein/family.jsp?categoryId=2108294&cp=3593187";
+var url = 'http://www.gnc.com/Sports-Nutrition-Protein-Whey-Protein/family.jsp?categoryId=2108294&cp=3593187&ppg=64';
 var gncHeader = 'http://www.gnc.com';
 
 //exports.productListingLinks = request(url, function(err, resp, body) {
@@ -17,7 +18,7 @@ request(url, function(err, resp, body) {
         $ = cheerio.load($(this));
         var productLink = $('a').attr('href');
         var relativeLink = $('a').attr('rel');
-        products += (gncHeader + productLink + relativeLink + '<br>');
+        products += (gncHeader + productLink + '<br>');
 //        console.log(gncHeader + productLink + relativeLink);
 //        console.log('------------------------------------------------------');
     });
