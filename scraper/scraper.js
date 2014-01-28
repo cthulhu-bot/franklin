@@ -42,5 +42,16 @@ request(url, function(err, resp, body){
 //    console.log(nutritionTrimmedText.replace(/%/g,'%\n'));
 
 //    console.log(nutritionTrimmedText.split('%'));
-    downloader.writeToFile(nutritionTrimmedText.split('%'), '../public/testProduct.html');
+//    var nutritionMap = nutritionTrimmedText.split('%');
+
+//    nutritionTrimmedText.split('%').each(function(text) {
+//        console.log(text);
+//    });
+    downloader.writeToFile(nutritionTrimmedText.replace(/%/g,'%<br>'), '../public/testProduct.html');
+
+/*    downloader.writeToFile(nutritionTrimmedText.split('%').map(
+        function(text) {
+            return text.replace('%','%<br>');
+        }), '../public/testProduct.html');
+*/
 });
