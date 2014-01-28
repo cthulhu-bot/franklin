@@ -1,12 +1,3 @@
-2014-01-28T03:43:39.242215+00:00 app[web.1]: http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-100-Whey-Protein-Vanilla/product.jsp?productId=4089507redir:p+cp=3593187.2108294
-2014-01-28T03:43:39.242215+00:00 app[web.1]: ------------------------------------------------------
-2014-01-28T03:43:39.243991+00:00 app[web.1]: http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-100-Whey-Protein-Cookies-Cream/product.jsp?productId=4021764redir:p+cp=3593187.2108294
-2014-01-28T03:43:39.243991+00:00 app[web.1]: ------------------------------------------------------
-2014-01-28T03:43:39.245645+00:00 app[web.1]: http://www.gnc.com/Optimum-Nutrition-100-Whey-Gold-Standard-Double-Rich-Chocolate/product.jsp?productId=3267268redir:p+cp=3593187.2108294
-2014-01-28T03:43:39.245645+00:00 app[web.1]: ------------------------------------------------------
-2014-01-28T03:43:39.247695+00:00 app[web.1]: http://www.gnc.com/Natures-Best-Perfect-Low-Carb-Isopure-Dutch-Chocolate/product.jsp?productId=2929310redir:p+cp=3593187.2108294
-2014-01-28T03:43:39.247695+00:00 app[web.1]: ------------------------------------------------------
-2014-01-28T03:43:39.250439+00:00 app[web.1]: ------------------------------------------------------
 2014-01-28T03:43:39.250360+00:00 app[web.1]: http://www.gnc.com/GNC-Pro-Performance-AMP-Amplified-Wheybolic-Extreme-60-Vanilla/product.jsp?productId=3513369redir:p+cp=3593187.2108294
 2014-01-28T03:43:39.252213+00:00 app[web.1]: http://www.gnc.com/Optimum-Nutrition-100-Whey-Gold-Standard-Extreme-Milk-Chocolate/product.jsp?productId=3267252redir:p+cp=3593187.2108294
 2014-01-28T03:43:39.252213+00:00 app[web.1]: ------------------------------------------------------
@@ -99,3 +90,12 @@
 2014-01-28T03:52:58.215398+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=franklin-1538.herokuapp.com request_id=1becf78a-7bea-45b4-aa5f-8a8aa02baf79 fwd="50.152.48.72" dyno= connect= service= status=503 bytes=
 2014-01-28T03:54:49.269396+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/gnc/ host=franklin-1538.herokuapp.com request_id=1b55cd7c-605d-4f8d-b881-191c1f152ac9 fwd="50.152.48.72" dyno= connect= service= status=503 bytes=
 2014-01-28T03:56:20.957742+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/gnc/products host=franklin-1538.herokuapp.com request_id=b7c759c6-0809-431d-bece-fe5ef8bf55ab fwd="50.152.48.72" dyno= connect= service= status=503 bytes=
+2014-01-28T03:56:21.136510+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=franklin-1538.herokuapp.com request_id=87416e64-f95b-4964-848d-182a2739124c fwd="50.152.48.72" dyno= connect= service= status=503 bytes=
+2014-01-28T04:29:02+00:00 heroku[slug-compiler]: Slug compilation started
+2014-01-28T04:30:33+00:00 heroku[slug-compiler]: Slug compilation failed: failed to compile Node.js app
+2014-01-28T04:36:20.566274+00:00 heroku[web.1]: State changed from crashed to starting
+2014-01-28T04:36:32.254358+00:00 heroku[web.1]: Starting process with command `node app.js`
+2014-01-28T04:36:41.723216+00:00 heroku[web.1]: Process exited with status 128
+2014-01-28T04:36:41.732250+00:00 heroku[web.1]: State changed from starting to crashed
+2014-01-28T04:36:48.643808+00:00 app[web.1]: Error waiting for network: Success
+2014-01-28T04:39:06.720266+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/favicon.ico host=franklin-1538.herokuapp.com request_id=15c8e044-9e48-4411-808d-6a8ae5747bfc fwd="50.152.48.72" dyno= connect= service= status=503 bytes=

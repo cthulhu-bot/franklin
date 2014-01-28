@@ -48,5 +48,5 @@ downloader.download(tnation, function(data) {
     downloader.writeToFile(data, "./public/tnation.html");
 });
 
-app.listen(process.env.port || 3000);
+app.listen(process.env.PORT || 3000);
 console.log("App started successfully");
