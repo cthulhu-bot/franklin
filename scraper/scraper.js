@@ -47,7 +47,9 @@ request(url, function(err, resp, body){
 //    nutritionTrimmedText.split('%').each(function(text) {
 //        console.log(text);
 //    });
-    downloader.writeToFile(nutritionTrimmedText.replace(/%/g,'%<br>'), '../public/testProduct.html');
+    console.log('scraper writing to file');
+
+    downloader.writeToFile(nutritionTrimmedText.replace(/%/g,'%<br>'), './public/testProduct.html');
 
 /*    downloader.writeToFile(nutritionTrimmedText.split('%').map(
         function(text) {

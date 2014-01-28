@@ -18,10 +18,11 @@ request(url, function(err, resp, body) {
         var productLink = $('a').attr('href');
         var relativeLink = $('a').attr('rel');
         products += (gncHeader + productLink + relativeLink + '<br>');
-        console.log(gncHeader + productLink + relativeLink);
-        console.log('------------------------------------------------------');
+//        console.log(gncHeader + productLink + relativeLink);
+//        console.log('------------------------------------------------------');
     });
-    downloader.writeToFile(products, '../public/gncProducts.html');
+    console.log('gnc crawler writing to file');
+    downloader.writeToFile(products, './public/gncProducts.html');
 });
 
 exports.productTitles = request(url, function(err, resp, body) {
@@ -43,8 +44,8 @@ exports.productUrls = request(url, function(err, resp, body) {
         $ = cheerio.load($(this));
         var productLink = $('a').attr('href');
         var relativeLink = $('a').attr('rel');
-        console.log(gncHeader + productLink + relativeLink);
-        console.log('------------------------------------------------------');
+//        console.log(gncHeader + productLink + relativeLink);
+//        console.log('------------------------------------------------------');
     });
 });
 
