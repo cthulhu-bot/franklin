@@ -19,13 +19,25 @@ request(url, function(err, resp, body) {
         var productLink = $('a').attr('href');
         var relativeLink = $('a').attr('rel');
         products += (gncHeader + productLink + '<br>');
-//        console.log(gncHeader + productLink + relativeLink);
-//        console.log('------------------------------------------------------');
     });
-    console.log('gnc crawler writing to file');
-    downloader.writeToFile(products, './public/gncProducts.html');
+
+    $ = cheerio.load(body);
+    var pages = null;
+    var pagelink = $('li.item-count').next().next().children().attr('href');
+    pages[0] = pagelink;    
+    pagelink = $('li.item-count').next().next().children().attr('href');
+    pages[1] = pagelink;
+    pagelink = $('li.item-count').next().next().children().attr('href');
+    pages[2] = pagelink;
+    pagelink = $('li.item-count').next().next().children().attr('href');
+    pages[3] = pagelink;
+
+//    console.log('gnc crawler writing to file');
+//    downloader.writeToFile(products, './public/gncProducts.html');
+
 });
 
+/*
 exports.productTitles = request(url, function(err, resp, body) {
     $ = cheerio.load(body);
     products = $('li.productListing');
@@ -49,5 +61,4 @@ exports.productUrls = request(url, function(err, resp, body) {
 //        console.log('------------------------------------------------------');
     });
 });
-
-
+*/

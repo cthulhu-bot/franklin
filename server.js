@@ -1,12 +1,8 @@
-var http = require("http");
+var request = require('request');
 
-function onRequest(request, response) {
-    console.log("Request received");
-    response.writeHead(200, {"Content-Type":"text/plain"});
-    response.write("Hello World");
-    response.end();
-}
+var url = 'http://www2.hawaii.edu/~jstupple';
+var foo = request(url, function(err, resp, body) {
+    console.log(body);
+});
 
-http.createServer(onRequest).listen(8888);
-
-console.log("Server has started");
+console.log(foo);
