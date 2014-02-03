@@ -22,7 +22,7 @@ request(url, function(err, resp, body) {
     });
 
     $ = cheerio.load(body);
-    var pages = null;
+    var pages;
     var pagelink = $('li.item-count').next().next().children().attr('href');
     pages[0] = pagelink;    
     pagelink = $('li.item-count').next().next().children().attr('href');
