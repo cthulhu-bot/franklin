@@ -32,10 +32,37 @@ request(url, function(err, resp, body) {
     pagelink = $('li.item-count').next().next().children().attr('href');
     pages[3] = pagelink;
 
+    var productLinks = [];
+    pages.forEach(function(url) {
+        // Wait for 4 seconds before scraping the next page
+        productLinks = setInterval(function(){getProductLinks(url)},4000);
+        console.log(gncHeader + productLinks);
+    });
+
+    
 //    console.log('gnc crawler writing to file');
 //    downloader.writeToFile(products, './public/gncProducts.html');
 
 });
+
+// Given a product list page scrape the individual product urls
+function getProductLinks(url) {
+    console.log('getProductLinks()');
+    console.log('url:  ' + url);
+    var productLinks = [];
+    request(url, function(err, resp, body) {
+        $ = cheerio.load(body);
+        links = $('li.productListing');
+
+        $(links).each(function(i,link) {
+            $ = cheerio.load($(this));
+            var productLink = $('a').attr('href');
+            var relativeLink = $('a').attr('rel');
+            productLinks.push(gncHeader + productLink + '<br>');
+        });
+    });
+    return productLinks;
+}
 
 /*
 exports.productTitles = request(url, function(err, resp, body) {
