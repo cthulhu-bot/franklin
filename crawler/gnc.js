@@ -25,18 +25,18 @@ request(url, function(err, resp, body) {
     var pages = [];
     var pagelink = $('li.item-count').next().next().children().attr('href');
     pages[0] = pagelink;    
-    pagelink = $('li.item-count').next().next().children().attr('href');
-    pages[1] = pagelink;
-    pagelink = $('li.item-count').next().next().children().attr('href');
-    pages[2] = pagelink;
-    pagelink = $('li.item-count').next().next().children().attr('href');
-    pages[3] = pagelink;
+    pages[1] = $('li.item-count').next().next().next().children().attr('href');
+    pages[2] = $('li.item-count').next().next().next().next().children().attr('href');
+    pages[3] = $('li.item-count').next().next().next().next().next().children().attr('href');
 
     var productLinks = [];
-    pages.forEach(function(url) {
+    pages.forEach(function(url){
         // Wait for 4 seconds before scraping the next page
-        productLinks = setInterval(function(){getProductLinks(url)},4000);
-        console.log(gncHeader + productLinks);
+        var prodLinks = setInterval(function(){getProductLinks(gncHeader + url)},4000);
+        productLinks = productLinks.concat(prodLinks);
+    });
+    productLinks.forEach(function(url){
+//        console.log(url);
     });
 
     
@@ -47,10 +47,14 @@ request(url, function(err, resp, body) {
 
 // Given a product list page scrape the individual product urls
 function getProductLinks(url) {
-    console.log('getProductLinks()');
-    console.log('url:  ' + url);
+    console.log('Function Call: getProductLinks');
+    console.log('Params: ' + url);
     var productLinks = [];
     request(url, function(err, resp, body) {
+//        console.log('Inner Function: request call');
+//        console.log('Params: ' + err);
+//        console.log('Params: ' + resp);
+//        console.log('Params: ' + body);
         $ = cheerio.load(body);
         links = $('li.productListing');
 
@@ -59,6 +63,7 @@ function getProductLinks(url) {
             var productLink = $('a').attr('href');
             var relativeLink = $('a').attr('rel');
             productLinks.push(gncHeader + productLink + '<br>');
+            console.log(gncHeader + productLink + '<br>');
         });
     });
     return productLinks;
