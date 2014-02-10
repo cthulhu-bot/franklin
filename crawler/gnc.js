@@ -19,6 +19,7 @@ request(url, function(err, resp, body) {
         var productLink = $('a').attr('href');
         var relativeLink = $('a').attr('rel');
         products += (gncHeader + productLink + '<br>');
+        downloader.appendToFile(gncHeader + productLink + '<br>\n', '../public/gncProducts.html');
     });
 
     $ = cheerio.load(body);
@@ -32,7 +33,7 @@ request(url, function(err, resp, body) {
     var productLinks = [];
     pages.forEach(function(url){
         // Wait for 4 seconds before scraping the next page
-        var prodLinks = setInterval(function(){getProductLinks(gncHeader + url)},4000);
+        var prodLinks = setTimeout(function(){getProductLinks(gncHeader + url)},10000);
         productLinks = productLinks.concat(prodLinks);
     });
     productLinks.forEach(function(url){
@@ -63,6 +64,7 @@ function getProductLinks(url) {
             var productLink = $('a').attr('href');
             var relativeLink = $('a').attr('rel');
             productLinks.push(gncHeader + productLink + '<br>');
+            downloader.appendToFile(gncHeader + productLink + '<br>\n', '../public/gncProducts.html');
             console.log(gncHeader + productLink + '<br>');
         });
     });

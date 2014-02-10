@@ -17,13 +17,20 @@ exports.download = function(url, callback) {
 
 exports.writeToFile = function(data, file) {
   if (data) {
-    fs.writeFile(file, data, function(err) {
+    fs.writeFileSync(file, data, function(err) {
       if(err) {
         console.log(err);
       } else {
-        console.log("The file was saved successfully");
+//        console.log('The file was saved successfully');
       }
     });
   }
-  else console.log("error");
+  else console.log('Write to file error - No data');
+}
+
+exports.appendToFile = function(data, file) {
+    if (data) {
+        fs.appendFileSync(file, data);
+    }
+    else console.log('Append to file error - No data');
 }
