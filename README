@@ -1,0 +1,10 @@
+Installation Steps:
+
+1.  DOwnload and install node.js from nodejs.org
+2.  Using the node package manager run the following commands:
+    a.  npm install cheerio
+    b.  npm install request
+    c.  npm install express
+3.  Clone or download the code from github
+4.  Browse to the directory containing app.js and run the following command:
+    a.  node app.js
