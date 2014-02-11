@@ -23,6 +23,11 @@ request(url, function(err, resp, body) {
     });
 
     $ = cheerio.load(body);
+
+    // While page contains a 'next' page link keep iterating
+    while ($('li.next')) {
+    }
+
     var pages = [];
     var pagelink = $('li.item-count').next().next().children().attr('href');
     pages[0] = pagelink;    
@@ -39,11 +44,8 @@ request(url, function(err, resp, body) {
     productLinks.forEach(function(url){
 //        console.log(url);
     });
-
-    
 //    console.log('gnc crawler writing to file');
 //    downloader.writeToFile(products, './public/gncProducts.html');
-
 });
 
 // Given a product list page scrape the individual product urls
