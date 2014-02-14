@@ -23,10 +23,15 @@ request(url, function(err, resp, body) {
     });
 
     $ = cheerio.load(body);
-
     // While page contains a 'next' page link keep iterating
-    while ($('li.next')) {
-    }
+    var nextLinks = $('li.next');
+    $(nextLinks).each(function(i,link){
+        $ = cheerio.load($(this));
+        var nextLink = $('a').attr('href');
+        if (nextLink !== null && nextLink !== undefined) {
+            console.log('next link: ' + nextLink);
+        }
+    });
 
     var pages = [];
     var pagelink = $('li.item-count').next().next().children().attr('href');
@@ -38,20 +43,23 @@ request(url, function(err, resp, body) {
     var productLinks = [];
     pages.forEach(function(url){
         // Wait for 4 seconds before scraping the next page
-        var prodLinks = setTimeout(function(){getProductLinks(gncHeader + url)},10000);
-        productLinks = productLinks.concat(prodLinks);
+//        var prodLinks = setTimeout(function(){getProductLinks(gncHeader + url)},4000);
+//        productLinks = productLinks.concat(prodLinks);
     });
     productLinks.forEach(function(url){
 //        console.log(url);
     });
 //    console.log('gnc crawler writing to file');
 //    downloader.writeToFile(products, './public/gncProducts.html');
+
+    function collectProductLinks(productPage) {
+    }
 });
 
 // Given a product list page scrape the individual product urls
 function getProductLinks(url) {
-    console.log('Function Call: getProductLinks');
-    console.log('Params: ' + url);
+//    console.log('Function Call: getProductLinks');
+//    console.log('Params: ' + url);
     var productLinks = [];
     request(url, function(err, resp, body) {
 //        console.log('Inner Function: request call');
@@ -67,7 +75,7 @@ function getProductLinks(url) {
             var relativeLink = $('a').attr('rel');
             productLinks.push(gncHeader + productLink + '<br>');
             downloader.appendToFile(gncHeader + productLink + '<br>\n', '../public/gncProducts.html');
-            console.log(gncHeader + productLink + '<br>');
+//            console.log(gncHeader + productLink + '<br>');
         });
     });
     return productLinks;
