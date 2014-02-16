@@ -22,16 +22,17 @@ request(url, function(err, resp, body) {
         downloader.appendToFile(gncHeader + productLink + '<br>\n', '../public/gncProducts.html');
     });
 
-    $ = cheerio.load(body);
-    // While page contains a 'next' page link keep iterating
     var nextLinks = $('li.next');
+    var nextLink = retrieveNextPage(url);
+    console.log('NextLink: ' + nextLink);
     $(nextLinks).each(function(i,link){
         $ = cheerio.load($(this));
-        var nextLink = $('a').attr('href');
+        nextLink = $('a').attr('href');
         if (nextLink !== null && nextLink !== undefined) {
-            console.log('next link: ' + nextLink);
+            nextLink = gncHeader + nextLink;
         }
     });
+ //   console.log(nextLink);
 
     var pages = [];
     var pagelink = $('li.item-count').next().next().children().attr('href');
@@ -43,8 +44,8 @@ request(url, function(err, resp, body) {
     var productLinks = [];
     pages.forEach(function(url){
         // Wait for 4 seconds before scraping the next page
-//        var prodLinks = setTimeout(function(){getProductLinks(gncHeader + url)},4000);
-//        productLinks = productLinks.concat(prodLinks);
+        var prodLinks = setTimeout(function(){getProductLinks(gncHeader + url)},4000);
+        productLinks = productLinks.concat(prodLinks);
     });
     productLinks.forEach(function(url){
 //        console.log(url);
@@ -55,6 +56,25 @@ request(url, function(err, resp, body) {
     function collectProductLinks(productPage) {
     }
 });
+
+function retrieveNextPage(url) {
+    console.log('RetrieveNextPage: ' + url);
+    var retLink = null;
+    request(url, function(err, resp, body) {
+        $ = cheerio.load(body);
+        // While page contains a 'next' page link keep iterating
+        var nextLinks = $('li.next');
+        $(nextLinks).each(function(i,link){
+            $ = cheerio.load($(this));
+            nextLink = $('a').attr('href');
+            if (nextLink !== null && nextLink !== undefined) {
+                nextLink = gncHeader + nextLink;
+                console.log('next link: ' + nextLink);
+                return nextLink;
+            }
+        });
+    });
+}
 
 // Given a product list page scrape the individual product urls
 function getProductLinks(url) {
